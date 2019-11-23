@@ -1,0 +1,52 @@
+package skj;
+
+import robocode.ScannedRobotEvent;
+import robocode.TeamRobot;
+
+public class MyRobot extends TeamRobot {
+	double prevEnergy = 100;
+	
+	double eBearings = 0;
+	
+	public void run() {
+		while (true) {
+			turnRadarRight(360);
+			ahead(100);
+		}
+	}
+	
+	public void onScannedRobot (ScannedRobotEvent e) {
+		/*
+		turnRight(eBearings = 90);
+		
+		turnRadarLeft(eBearings + 45);
+		prevEnergy = e.getEnergy();
+		turnRadarLeft(360);
+		*/
+		
+		eBearings = e.getBearing();
+		
+		if (e.getDistance() > 700) {
+			while (e.getDistance() > 500) {
+				scan();
+				turnRight(e.getBearing());
+				fire(1);
+				ahead(130);
+				fire(1);
+				ahead(130);
+			}
+		} else if (e.getDistance() > 500 && e.getDistance() < 700) {
+			turnRadarRight(eBearings);
+			fire(1);
+		} else if (e.getDistance() > 250 && e.getDistance() < 500) {
+			turnRadarRight(eBearings);
+			fire(2);
+		} else if (e.getDistance() < 250) {
+			turnRadarRight(eBearings);
+			fire(3);
+		}
+		scan();
+		turnRight(e.getBearing());
+		ahead(100);
+	}
+}
