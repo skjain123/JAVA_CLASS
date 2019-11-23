@@ -1,0 +1,30 @@
+@Java
+method maze() 
+{
+   while (!isFlower(HERE)) 
+   {
+      if (!isWater(RIGHT)) 
+      {
+         turn(LEFT);
+         hop();
+      } else if (!isWater(AHEAD)) 
+      {
+         hop();
+      } else if (!isWater(RIGHT)) 
+      {
+         turn(RIGHT);
+         hop();
+      } else 
+      {
+         turn(RIGHT);
+         turn(RIGHT);
+      }
+   }
+}
+@@
+method main() 
+{
+   Jeroo s = new Jeroo(19,0)
+   
+   s.maze();
+}

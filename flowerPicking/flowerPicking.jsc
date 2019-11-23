@@ -1,0 +1,84 @@
+@Java
+method checkFlower() 
+{
+   if (isFlower(HERE)) //is there a flower here? if so then pick it up and hop 
+   {
+      pick();
+      hop();
+   } else if (!isFlower(HERE)) //if there isnt a flower here then hop
+   {
+      hop();
+   }
+}
+
+method checkWater() 
+{
+   while(!isWater(AHEAD)) { // is there water ahead? if not then:
+      if (!(isWater(LEFT) && isWater(AHEAD))) //is there water to the left and ahead? if not then:
+      {
+         checkFlower(); //check if there is a flower here
+         if (!isWater(AHEAD) && !isFacing(WEST)) //if there isnt water ahead and the jeroo is facing east then:
+         {
+            if (!isWater(LEFT)) //check if there is water to the left if not then:
+            {
+               doTurn(); //turn the other way
+            }
+         } else //if the Jeroo is facing west then:
+         {
+            doTurn(); //turn the other way
+         }
+      } else //if there is water to the left or ahead then do nothing
+      {
+         //sdf
+      }
+   }
+}
+
+method doTurn() 
+{
+   if(isWater(AHEAD)) //is there water ahead? if so:
+   {
+      if(isFacing(EAST)) //is the Jeroo facing East? if so:
+      {
+         if(isFlower(HERE)) //is there a flower here if so then pick it
+         {
+            pick();
+         }
+         turn(RIGHT); //turn right
+         if (!isWater(AHEAD) && !isFacing(EAST)) // if there isnt water ahead and the jeroo is facing west then hop and turn right
+         {
+            hop();
+            turn(RIGHT);
+         }
+      } else if(isFacing(WEST)) // if the jeroo is facing west then:
+      {
+         if(isFlower(HERE)) //is there a flower here if so pick it
+         {
+            pick();
+         }
+         turn(LEFT); //turn left
+         if (!isWater(AHEAD) && !isFacing(WEST)) //if there is not water ahead and the Jeroo is facing East then hop and turn left
+         {
+            hop();
+            turn(LEFT);
+         }
+      }
+   }
+}
+
+method run() //start the program this is just to be organized
+{
+   checkWater();
+}
+@@
+//Inspired by Jason Galbraith's Video tutorials
+//Modified by Sunil Jain
+//This program runs through all of the spaces on the map where there is no water and collects any flower it comes across, it also doesnt fall in the water at the end.
+//Date: 9/6/19
+
+method main() //main method
+{
+   Jeroo s = new Jeroo(); //instantiate Jeroo "s"
+   
+   s.run(); //runs program
+}

@@ -1,0 +1,66 @@
+@Java
+method left1()
+{
+   
+   if (!isWater(LEFT)) //if there isnt water to the left then turn left and hop
+   {
+      turn(LEFT);
+         
+      hop();
+   } else if (!isWater(AHEAD)) //if there is water to the left and there is no water ahead then hop
+   {
+      hop();
+   } else if (!isWater(RIGHT)) //if there is water to the left, and ahead then turn right and hop
+   {
+      turn(RIGHT);
+      hop();
+   } else //if there is water to the left, right, and ahead then turn around
+   {
+      turn(RIGHT);
+      turn(RIGHT);
+   }
+   pick(); //pick the flower if there is one
+}
+
+method right1()
+{
+   if (!isWater(RIGHT)) //if there isnt water to the right then turn right and hop 
+   {
+      turn(RIGHT);
+         
+      hop();
+   } else if (!isWater(AHEAD)) //if there is water to the right and there isnt water ahead hop
+   {
+      hop();
+   } else if (!isWater(LEFT)) //if there is water to the right and ahead then turn left and hop
+   {
+      turn(LEFT);
+      hop();
+   } else //if there is water to the right, left, and ahead then turn around
+   {
+      turn(RIGHT);
+      turn(RIGHT);
+   }
+   pick(); //pick a flower if there is one
+}
+
+method switch() 
+{
+   while (!hasFlower()) //if the jeroo does not have a flower then prioritize left 2 times then prioritize right once and loop until the jeroo finds a flower
+   {
+      left1();
+      left1();
+      right1();
+   }
+}
+@@
+//inspired by Jason Galbraith's Video tutorials on his youtube channel linked on canvas.
+//Modified by Sunil Jain
+//this program can run through the mazes provided by Mr. Galbraith and find the flower hidden at any coordinate on the map.
+//Date: 9/7/19
+
+method main() //main method
+{
+   Jeroo s = new Jeroo(19,0); //instantiate the Jeroo "s" at (19,0) on the map
+   s.switch(); //call the switch method
+}
