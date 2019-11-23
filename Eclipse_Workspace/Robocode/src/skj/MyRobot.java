@@ -17,20 +17,31 @@ public class MyRobot extends TeamRobot {
 		setGunColor(Color.BLACK);
 		setRadarColor(Color.BLACK);
 		setScanColor(Color.BLACK);
-		setBulletColor(Color.BLACK);
+		setBulletColor(Color.WHITE);
 
 		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
 		setAdjustGunForRobotTurn(true);
 		
-		turnLeft(getHeading());
 		turnLeft(getHeading() % 90);
 		ahead(moveAmount);
 		turnRight(90);
+		ahead(moveAmount);
+		turnGunRight(180);
+		
+		int gun = 60;
 		
 		while (true) {
-			turnRadarLeft(360);
-			ahead(moveAmount * dir);
-			turnRight(90);
+			for (int i = 0; i < 10; i++)
+			{
+				turnGunLeft(gun);
+			}
+			gun *= -1;
+			
+			//turnRadarLeft(360);
+			//turnRadarLeft(180);
+			//turnRadarRight(180);
+			//ahead(moveAmount * dir);
+			//turnRight(90);
 		}
 	}
 	
@@ -40,6 +51,12 @@ public class MyRobot extends TeamRobot {
 	
 	public void shoot(ScannedRobotEvent e) {
 		setTurnGunRight(getHeading() - getGunHeading() + e.getBearing());
-		setFire(Math.min(400 / e.getDistance(), 3));
+		double bulPwr = Math.min((400 / e.getDistance()), 3);
+		if (bulPwr > 1) {
+			setFire(Math.min((400 / e.getDistance()) + 1, 3));
+		} else {
+			setFire(1);
+		}
+		scan();
 	}
 }
