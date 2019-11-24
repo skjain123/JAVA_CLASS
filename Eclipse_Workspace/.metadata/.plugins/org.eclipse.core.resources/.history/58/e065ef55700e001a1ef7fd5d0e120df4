@@ -35,9 +35,7 @@ public class MyRobot extends TeamRobot {
 	}
 	
 	public void onScannedRobot(ScannedRobotEvent e) {
-		if (e.getName().contains(getName()) == false) {
-			shoot(e);	
-		}
+		shoot(e);	
 	}
 	
 	public void shoot(ScannedRobotEvent e) {

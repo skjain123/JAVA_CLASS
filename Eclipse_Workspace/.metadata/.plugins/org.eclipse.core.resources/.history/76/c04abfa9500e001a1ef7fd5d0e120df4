@@ -26,23 +26,29 @@ public class MyRobot extends TeamRobot {
 		ahead(moveAmount);
 		turnRight(90);
 		ahead(moveAmount);
+		turnGunRight(180);
+		
+		int gun = 60;
 		
 		while (true) {
-			turnRadarLeft(360);
 			ahead(moveAmount * dir);
+			turnRadarLeft(360);
 			turnRight(90);
 		}
 	}
 	
 	public void onScannedRobot(ScannedRobotEvent e) {
-		if (e.getName().contains(getName()) == false) {
-			shoot(e);	
-		}
+		shoot(e);	
 	}
 	
 	public void shoot(ScannedRobotEvent e) {
-		double angle = robocode.util.Utils.normalRelativeAngleDegrees(getHeading() - getGunHeading() + e.getBearing());
-		setTurnGunRight(angle);
-		setFire(Math.min(400 / e.getDistance(), 3));
+		setTurnGunRight(getHeading() - getGunHeading() + e.getBearing());
+		double bulPwr = Math.min((400 / e.getDistance()), 3);
+		if (bulPwr > 1) {
+			setFire(Math.min((400 / e.getDistance()) + 1, 3));
+		} else {
+			setFire(1);
+		}
+		scan();
 	}
 }
