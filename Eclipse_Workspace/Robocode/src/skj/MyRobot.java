@@ -54,6 +54,6 @@ public class MyRobot extends TeamRobot {
 	}
 	
 	public void onScannedRobot(ScannedRobotEvent e) {
-		shoot(e);
+		//shoot(e);
 	}
 }

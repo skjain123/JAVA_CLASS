@@ -34,7 +34,7 @@ public class TicTacToe
 	{
 			while (stillPlaying == true) {
 				System.out.println("Turn: X");
-			while (checkWin(X_MOVE) == false && checkWin(O_MOVE) == false && checkTie() == false) {
+			while (checkWin(X_MOVE) == false && checkWin(O_MOVE) == false) {
 				printBoard();
 				input = scanner.nextLine();
 				
@@ -155,7 +155,7 @@ public class TicTacToe
 	{
 		for (int row = 0; row < board.length; row++) //check every space for a blank if there is no blanks then the game is tied
 		{
-			for (int column = 0; column < board[0].length; column++)
+			for (int column = 0; column < board.length; column++)
 			{
 				if (board[row][column] == BLANK) {
 					return false;

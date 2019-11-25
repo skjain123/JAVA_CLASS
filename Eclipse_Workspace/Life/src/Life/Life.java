@@ -5,11 +5,13 @@
  * 
  * Modified/Created By: Sunil Jain
  * 
+ * Date: 9/19/19
+ * 
  * */
 
 package Life;
 
-//imports
+//awt imports
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -18,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+//swing imports
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -30,8 +33,8 @@ public class Life implements MouseListener, ActionListener, Runnable //able for 
 	boolean running = false;
 	
 	//initializing the buttons, containers, frames, etc...
-	JFrame frame = new JFrame("Life Simulation");
-	LifePanel panel = new LifePanel(cells);
+	JFrame frame = new JFrame("Life Simulation"); 
+	LifePanel panel = new LifePanel(cells); 
 	Container south = new Container();
 	JButton step = new JButton("Step");
 	JButton start = new JButton("Start");
@@ -74,9 +77,11 @@ public class Life implements MouseListener, ActionListener, Runnable //able for 
 			step(); //run step
 		} else if (event.getSource().equals(start) == true) //did the player click the start button if so...
 		{
-			running = true;
-			Thread t = new Thread(this);
-			t.start(); //run the start function
+			if(!running) {
+				running = true;
+				Thread t = new Thread(this);
+				t.start(); //run the start function
+			}
 		} else if (event.getSource().equals(stop) == true) //did the player click the stop button if so...
 		{
 			running = false; //stop the start function
@@ -178,7 +183,7 @@ public class Life implements MouseListener, ActionListener, Runnable //able for 
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent event)
+	public void mouseClicked(MouseEvent event) //if the mouse was clicked then
 	{
 	}
 
@@ -201,17 +206,17 @@ public class Life implements MouseListener, ActionListener, Runnable //able for 
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent event) 
+	public void mouseReleased(MouseEvent event) //if the mouse was released then
 	{
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent event)
+	public void mouseEntered(MouseEvent event) //if the mouse entered the frame then
 	{
 	}
 
 	@Override
-	public void mouseExited(MouseEvent event)
+	public void mouseExited(MouseEvent event) //if the mouse exited the frame then
 	{
 	}
 }
