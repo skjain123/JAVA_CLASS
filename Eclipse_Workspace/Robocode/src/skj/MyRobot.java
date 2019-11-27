@@ -8,6 +8,7 @@ import robocode.TeamRobot;
 public class MyRobot extends TeamRobot {
 	
 	int dir = 1;
+	boolean f = true;
 	double moveAmount;
 	
 	public void run() {
@@ -19,7 +20,7 @@ public class MyRobot extends TeamRobot {
 		setBulletColor(Color.WHITE);
 
 		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
-		//setAdjustGunForRobotTurn(true);
+		setAdjustGunForRobotTurn(true);
 		
 		turnLeft(getHeading() % 90);
 		ahead(moveAmount);
@@ -33,11 +34,6 @@ public class MyRobot extends TeamRobot {
 		}
 	}
 	
-	double bulletPwr = 0;
-	double bulletSpeed = 0;
-	long bulletTime = 0;
-	double distTraveling = 0;
-	double angle = 0;
 	
 	public void shoot(ScannedRobotEvent e) {
 		
@@ -46,15 +42,14 @@ public class MyRobot extends TeamRobot {
 		
 		
 		/*
-		bulletPwr = Math.min(400 / e.getDistance(), 3);
-		bulletSpeed = 20 - bulletPwr * 3;
-		bulletTime = (long)(e.getDistance() / bulletSpeed);
-		distTraveling = e.getVelocity() * bulletTime;
-		angle = Math.atan((distTraveling) / (e.getDistance()));
-		*/	
+		double bulletPwr = Math.min(400 / e.getDistance(), 3);
+		double bulletSpeed = 20 - bulletPwr * 3;
+		long bulletTime = (long)(e.getDistance() / bulletSpeed);
+		double distTraveling = e.getVelocity() * bulletTime;
+		double angle = Math.atan((distTraveling) / (e.getDistance()));
+		*/		
 		
-		setTurnGunRightRadians(0);
-		setTurnGunRightRadians(angle);
+		setTurnGunRight(angle);
 		setFire(bulletPwr);
 	}
 	

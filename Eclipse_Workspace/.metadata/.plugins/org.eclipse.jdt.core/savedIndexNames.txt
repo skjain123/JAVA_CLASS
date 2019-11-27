@@ -7,19 +7,6 @@ INDEX VERSION 1.130+C:\Users\416742\Desktop\java_class\Eclipse_Workspace\.metada
 2294751228.index
 526019975.index
 2776486512.index
-<<<<<<< HEAD
-3023100672.index
-2137645919.index
-1494953510.index
-2742721291.index
-3778645487.index
-1334412443.index
-318857592.index
-3260877587.index
-3080245753.index
-278777650.index
-=======
->>>>>>> f23d12bbac13c89c306ac7aa55f499b4e0555501
 105725630.index
 2742721291.index
 3527903221.index
