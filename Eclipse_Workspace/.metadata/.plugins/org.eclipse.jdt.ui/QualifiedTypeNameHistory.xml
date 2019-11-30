@@ -24,4 +24,5 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="robocode._Robot"/>
 <fullyQualifiedTypeName name="robocode.util.Utils"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>
